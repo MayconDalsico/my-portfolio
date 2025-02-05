@@ -5,6 +5,7 @@ import EmailIcon from "@mui/icons-material/Email";
 import StyledButton from "../../../../components/StyledButton/StyledButton";
 import theme from "../../../../theme";
 import { AnimatedBackground } from "../../../../components/AnimatedBackground/AnimateBackground";
+import { Padding } from "@mui/icons-material";
 
 const Hero = () => {
   const StyledHero = styled("div")(({ theme }) => ({
@@ -12,10 +13,16 @@ const Hero = () => {
     height: "100vh",
     display: "flex",
     alignItems: "center",
-  }));
+    [theme.breakpoints.up('xs')]:{ // <= mobile
+        paddingTop: "100px",
+    },
+    [theme.breakpoints.up('md')]:{ // >= mobile
+      paddingTop: "0",
+    }
+  }))
 
   const StyledImage = styled("img")(() => ({
-    width: "80%",
+    width: "75%",
     borderRadius: "50%",
     border: `2px solid ${theme.palette.primary.contrastText}`,
   }));

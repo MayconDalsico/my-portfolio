@@ -1,4 +1,5 @@
 import Home from "./pages/Home/Home"
+import About from "./pages/Home/sections/About/About"
 
 
 const App = () => {
@@ -7,6 +8,7 @@ const App = () => {
   return (
     <>
       <Home />
+      <About />
     </>
   )
 }

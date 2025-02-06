@@ -1,11 +1,22 @@
-import { Box, Container, Grid, styled, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  Grid,
+  styled,
+  Typography,
+} from "@mui/material";
 import Avatar from "../../../../assets/images/avatar.jpeg";
 import DownloadIcon from "@mui/icons-material/Download";
 import EmailIcon from "@mui/icons-material/Email";
 import StyledButton from "../../../../components/StyledButton/StyledButton";
 import theme from "../../../../theme";
 import { AnimatedBackground } from "../../../../components/AnimatedBackground/AnimateBackground";
-import { Padding } from "@mui/icons-material";
+import AnimatedTitle from "../../../../components/AnimatedTitle/AnimatedTitle";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import ScrollDown from "../../../../components/AnimatedScrollDown/AnimatedScrollDown";
 
 const Hero = () => {
   const StyledHero = styled("div")(({ theme }) => ({
@@ -13,18 +24,41 @@ const Hero = () => {
     height: "100vh",
     display: "flex",
     alignItems: "center",
-    [theme.breakpoints.up('xs')]:{ // <= mobile
-        paddingTop: "100px",
+    position: "relative", // Permite o uso de position absolute nos filhos
+    [theme.breakpoints.up("xs")]: {
+      paddingTop: theme.spacing(12),
     },
-    [theme.breakpoints.up('md')]:{ // >= mobile
+    [theme.breakpoints.up("md")]: {
+      // >= mobile
       paddingTop: "0",
-    }
-  }))
+    },
+  }));
 
-  const StyledImage = styled("img")(() => ({
-    width: "75%",
+  const StyledImage = styled("img")(({ theme }) => ({
+    width: "100%",
     borderRadius: "50%",
-    border: `2px solid ${theme.palette.primary.contrastText}`,
+    border: `2px solid ${theme.palette.text.primary}`,
+  }));
+
+  const StyledButtonSocial = styled(Button)(() => ({
+    background: "transparent",
+    padding: "10px 20px",
+    color: "#404439", // Cor do texto
+    fontWeight: "bold",
+    textTransform: "none", // Retira a transformação automática do texto
+    "&:hover": {
+      color: "#EF6018", // Cor do texto ao passar o mouse
+    },
+  }));
+
+  const SocialIconsWrapper = styled(Box)(({ theme }) => ({
+    position: "absolute",
+    bottom: 30,
+    left: "50%",
+    transform: "translateX(-50%)",
+    [theme.breakpoints.down("sm")]: {
+      paddingTop: "40px", // Adiciona o padding-top no celular
+    },
   }));
 
   return (
@@ -34,30 +68,23 @@ const Hero = () => {
           <Grid container spacing={2}>
             <Grid item xs={12} md={5}>
               <Box position="relative">
-                <Box position="absolute" width="120%" top={-180} right={0}>
+                <Box position="relative" maxWidth="100%" top={-130} right={130}>
                   <AnimatedBackground />
                 </Box>
-                <Box position="relative" textAlign={"center"}>
+                <Box
+                  position="absolute"
+                  top="40%"
+                  left="35%"
+                  zIndex={2}
+                  sx={{ transform: "translate(-40%, -50%)" }}
+                  textAlign={"center"}
+                >
                   <StyledImage src={Avatar} />
                 </Box>
               </Box>
             </Grid>
             <Grid item xs={12} md={7}>
-              <Typography
-                color="primary.contrastText"
-                variant="h1"
-                textAlign="center"
-                pb={2}
-              >
-                Maycon D. Silva
-              </Typography>
-              <Typography
-                color="primary.contrastText"
-                variant="h2"
-                textAlign="center"
-              >
-                Dev. Front-End
-              </Typography>
+              <AnimatedTitle />
               <Grid
                 container
                 display="flex"
@@ -68,31 +95,65 @@ const Hero = () => {
                 <Grid
                   item
                   xs={12}
-                  md={3}
+                  md={4}
                   display="flex"
                   justifyContent="center"
                 >
-                  <StyledButton onClick = {() => console.log("Download do Currículo")}>
+                  <StyledButton
+                    onClick={() => console.log("Download do Currículo")}
+                  >
                     <DownloadIcon />
-                    <Typography>Download CV</Typography>
+                    <Typography>Baixar Currículo</Typography>
                   </StyledButton>
                 </Grid>
                 <Grid
                   item
                   xs={12}
-                  md={3}
+                  md={4}
                   display="flex"
                   justifyContent="center"
                 >
-                  <StyledButton onClick = {() => console.log("Encaminhar para contato")}>
+                  <StyledButton
+                    onClick={() => console.log("Encaminhar para contato")}
+                  >
                     <EmailIcon />
-                    <Typography>Contact me</Typography>
+                    <Typography>Meu Contato</Typography>
                   </StyledButton>
                 </Grid>
               </Grid>
             </Grid>
           </Grid>
         </Container>
+        <Box
+          position="absolute"
+          bottom={30}
+          left="50%"
+          sx={{ transform: "translateX(-50%)" }}
+        >
+          <Grid display="flex" justifyContent="center" gap={"30px"}>
+            <StyledButtonSocial
+              href="https://www.linkedin.com"
+              rel="noopener noreferrer"
+            >
+              <LinkedInIcon fontSize="large" />
+            </StyledButtonSocial>
+
+            <StyledButtonSocial
+              href="https://github.com"
+              rel="noopener noreferrer"
+            >
+              <GitHubIcon fontSize="large" />
+            </StyledButtonSocial>
+
+            <StyledButtonSocial
+              href="https://www.instagram.com"
+              rel="noopener noreferrer"
+            >
+              <InstagramIcon fontSize="large" />
+            </StyledButtonSocial>
+          </Grid>
+        </Box>
+        <ScrollDown />
       </StyledHero>
     </>
   );

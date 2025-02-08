@@ -4,6 +4,7 @@ import {
   Container,
   Grid,
   styled,
+  Tooltip,
   Typography,
 } from "@mui/material";
 import Avatar from "../../../../assets/images/avatar.jpeg";
@@ -131,26 +132,32 @@ const Hero = () => {
           sx={{ transform: "translateX(-50%)" }}
         >
           <Grid display="flex" justifyContent="center" gap={"30px"}>
-            <StyledButtonSocial
-              href="https://www.linkedin.com"
-              rel="noopener noreferrer"
-            >
-              <LinkedInIcon fontSize="large" />
-            </StyledButtonSocial>
+            <Tooltip title="Linkedin" arrow>
+              <StyledButtonSocial
+                href="https://www.linkedin.com"
+                rel="noopener noreferrer"
+              >
+                <LinkedInIcon fontSize="large" />
+              </StyledButtonSocial>
+            </Tooltip>
 
+            <Tooltip title="GitHub" arrow>
             <StyledButtonSocial
               href="https://github.com"
               rel="noopener noreferrer"
             >
               <GitHubIcon fontSize="large" />
             </StyledButtonSocial>
+            </Tooltip>
 
+            <Tooltip title="Instagram" arrow>
             <StyledButtonSocial
               href="https://www.instagram.com"
               rel="noopener noreferrer"
             >
               <InstagramIcon fontSize="large" />
             </StyledButtonSocial>
+            </Tooltip>
           </Grid>
         </Box>
         <ScrollDown />

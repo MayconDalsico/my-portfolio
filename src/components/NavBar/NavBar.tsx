@@ -16,9 +16,10 @@ const NavBar = () => {
   }));
 
   const StyledMenuItem = styled(MenuItem)(({ theme }) => ({
+    color: theme.palette.text.primary,
     transition: "color 0.3s ease",
     "&:hover": {
-      color: theme.palette.secondary.main, 
+      color: theme.palette.secondary.main,
     },
     "&.Mui-focusVisible": {
       outline: "none", // Remove o contorno de foco

@@ -11,7 +11,6 @@ import Avatar from "../../../../assets/images/avatar.jpeg";
 import DownloadIcon from "@mui/icons-material/Download";
 import EmailIcon from "@mui/icons-material/Email";
 import StyledButton from "../../../../components/StyledButton/StyledButton";
-import theme from "../../../../theme";
 import { AnimatedBackground } from "../../../../components/AnimatedBackground/AnimateBackground";
 import AnimatedTitle from "../../../../components/AnimatedTitle/AnimatedTitle";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
@@ -64,8 +63,8 @@ const Hero = () => {
 
   return (
     <>
-      <StyledHero>
-        <Container maxWidth="lg">
+      <StyledHero >
+        <Container maxWidth="lg" id="Hero">
           <Grid container spacing={2}>
             <Grid item xs={12} md={5}>
               <Box position="relative">
@@ -134,7 +133,7 @@ const Hero = () => {
           <Grid display="flex" justifyContent="center" gap={"30px"}>
             <Tooltip title="Linkedin" arrow>
               <StyledButtonSocial
-                href="https://www.linkedin.com"
+                href="https://www.linkedin.com/in/maycon-dalsico-silva-a5a98032b/"
                 rel="noopener noreferrer"
               >
                 <LinkedInIcon fontSize="large" />
@@ -143,7 +142,7 @@ const Hero = () => {
 
             <Tooltip title="GitHub" arrow>
             <StyledButtonSocial
-              href="https://github.com"
+              href="https://github.com/MayconDalsico"
               rel="noopener noreferrer"
             >
               <GitHubIcon fontSize="large" />
@@ -152,7 +151,7 @@ const Hero = () => {
 
             <Tooltip title="Instagram" arrow>
             <StyledButtonSocial
-              href="https://www.instagram.com"
+              href="https://www.instagram.com/elficStudio/#"
               rel="noopener noreferrer"
             >
               <InstagramIcon fontSize="large" />
@@ -160,9 +159,10 @@ const Hero = () => {
             </Tooltip>
           </Grid>
         </Box>
-        <ScrollDown />
       </StyledHero>
+      <ScrollDown />
     </>
+    
   );
 };
 

@@ -1,17 +1,16 @@
 import { AppBar, MenuItem, styled, Toolbar } from "@mui/material";
 
 const NavBar = () => {
-
   const StyledToolbar = styled(Toolbar)(() => ({
     display: "flex",
     justifyContent: "space-evenly",
   }));
 
   const StyledAppBar = styled(AppBar)(({ theme }) => ({
-    borderBottom: "2px solid transparent", // Borda padrão invisível
-    transition: "border-bottom 0.3s ease", // Suaviza a transição da borda
+    borderBottom: "2px solid transparent",
+    transition: "border-bottom 0.3s ease",
     "&:hover": {
-      borderBottom: `1px double ${theme.palette.text.primary}`, // Borda dupla ao passar o mouse
+      borderBottom: `5px double ${theme.palette.text.primary}`,
     },
   }));
 
@@ -21,22 +20,36 @@ const NavBar = () => {
     "&:hover": {
       color: theme.palette.secondary.main,
     },
-    "&.Mui-focusVisible": {
-      outline: "none", // Remove o contorno de foco
-    },
     "&:focus": {
-      outline: "none", 
-      boxShadow: "none", 
+      outline: "none",
+      boxShadow: "none",
       backgroundColor: "transparent",
     },
   }));
 
+  // Função para fazer o scroll suave para a seção correspondente
+  const scrollToSection = (id) => {
+    if (typeof window !== "undefined") { // Garante que estamos no navegador
+      const section = document.getElementById(id);
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+  
+
   return (
     <StyledAppBar position="absolute">
       <StyledToolbar>
-        <StyledMenuItem>SOBRE MIM</StyledMenuItem>
-        <StyledMenuItem>HABILIDADES</StyledMenuItem>
-        <StyledMenuItem>PROJETOS</StyledMenuItem>
+        <StyledMenuItem onClick={() => scrollToSection("sobre-mim")}>
+          SOBRE MIM
+        </StyledMenuItem>
+        <StyledMenuItem onClick={() => scrollToSection("habilidades")}>
+          HABILIDADES
+        </StyledMenuItem>
+        <StyledMenuItem onClick={() => scrollToSection("projetos")}>
+          PROJETOS
+        </StyledMenuItem>
       </StyledToolbar>
     </StyledAppBar>
   );

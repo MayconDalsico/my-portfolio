@@ -1,7 +1,9 @@
 
+import ScollToHero from "./components/ScrollToHero/ScrollToHero"
 import Home from "./pages/Home/Home"
 import About from "./pages/Home/sections/About/About"
-import AnimationPag from "./pages/Home/sections/Animation/AnimationPag"
+import Contato from "./pages/Home/sections/Contato/Contato"
+import Footer from "./pages/Home/sections/Footer/Footer"
 import Projetos from "./pages/Home/sections/Projetos/Projetos"
 import Skills from "./pages/Home/sections/Skills/Skills"
 
@@ -15,8 +17,9 @@ const App = () => {
       <About />
       <Skills />
       <Projetos />
-      <AnimationPag />
-
+      <Contato />
+      <Footer />
+      <ScollToHero />
     </>
   )
 }

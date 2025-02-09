@@ -6,6 +6,7 @@ interface HoverCardProps {
   title: string;
   description: string;
   link: string;
+  techIcons?: React.ReactNode[];
 }
 
 const CardContainer = styled(Card)({
@@ -79,14 +80,20 @@ const ModalContent = styled(Box)({
   gap: "20px",
 });
 
-const HoverCard: React.FC<HoverCardProps> = ({ icon, title, description, link }) => {
+const HoverCard: React.FC<HoverCardProps> = ({ icon, title, description, link, techIcons }) => {
   const [open, setOpen] = useState(false);
+
+  const isVideo = icon.endsWith(".mp4"); 
 
   return (
     <>
       <CardContainer>
-        <Face1 className="face1">
-          <video src={icon} autoPlay loop muted width="100%" />
+      <Face1 className="face1">
+          {isVideo ? (
+            <video src={icon} autoPlay loop muted width="100%" />
+          ) : (
+            <img src={icon} alt={title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+          )}
           <TitleOverlay>
             <Typography variant="h6">{title}</Typography>
           </TitleOverlay>
@@ -107,15 +114,27 @@ const HoverCard: React.FC<HoverCardProps> = ({ icon, title, description, link })
       {/* Modal */}
       <Modal open={open} onClose={() => setOpen(false)}>
         <ModalContent>
-          {/* Vídeo à esquerda */}
+          {/* Vídeo ou Imagem à esquerda */}
           <Box flex={1} display="flex" justifyContent="center" alignItems="center">
-            <video src={icon} controls width="100%" style={{ borderRadius: "10px" }} />
+            {isVideo ? (
+              <video src={icon} controls muted width="100%" style={{ borderRadius: "10px" }} />
+            ) : (
+              <img src={icon} alt={title} style={{ width: "100%", borderRadius: "10px" }} />
+            )}
           </Box>
 
-          {/* Informações à direita */}
-          <Box flex={1} display="flex" flexDirection="column" justifyContent="center" gap={2}>
+ {/* Informações à direita */}
+ <Box flex={1} display="flex" flexDirection="column" justifyContent="center" gap={2}>
             <Typography variant="h5" fontWeight={700}>{title}</Typography>
             <Typography variant="body1">{description}</Typography>
+            
+            {/* Ícones das tecnologias */}
+            <Box display="flex" gap={1} flexWrap="wrap">
+  {techIcons?.map((icon, index) => (
+    <Box key={index}>{icon}</Box>
+  ))}
+</Box>
+
             <Box display="flex" gap={2}>
               <Button variant="contained" color="primary" href={link} target="_blank">Acessar Projeto</Button>
               <Button variant="outlined" color="secondary" onClick={() => setOpen(false)}>Fechar</Button>
